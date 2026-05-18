@@ -1,0 +1,121 @@
+# =========================
+# PYTHON
+# =========================
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Ambientes virtuais
+venv/
+.env/
+.venv/
+
+# Distribuição/build
+build/
+dist/
+*.egg-info/
+
+# Pytest
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Mypy / lint
+.mypy_cache/
+.ruff_cache/
+
+# =========================
+# VARIÁVEIS DE AMBIENTE
+# =========================
+.env
+.env.local
+.env.production
+
+# =========================
+# FASTAPI / UVICORN
+# =========================
+*.log
+
+# =========================
+# CELERY
+# =========================
+celerybeat-schedule
+
+# =========================
+# UPLOADS E PROCESSAMENTO
+# =========================
+uploads/
+temp/
+tmp/
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.webm
+*.wav
+
+# Frames temporários extraídos
+frames/
+extracted_frames/
+
+# =========================
+# MODELOS DE IA / TORCH
+# =========================
+models/checkpoints/
+*.pt
+*.pth
+*.onnx
+
+# =========================
+# DATABASE
+# =========================
+*.db
+*.sqlite3
+
+# Dumps
+*.sql
+
+# =========================
+# DOCKER
+# =========================
+docker-data/
+.mysql/
+.redis/
+
+# =========================
+# VSCODE / IDE
+# =========================
+.vscode/
+.idea/
+
+# =========================
+# SISTEMA OPERACIONAL
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# FRONTEND
+# =========================
+node_modules/
+
+# Cache frontend
+.cache/
+dist/
+
+# =========================
+# ALEMBIC
+# =========================
+migrations/__pycache__/
+
+# =========================
+# CACHE REDIS
+# =========================
+dump.rdb
+
+# =========================
+# SEGURANÇA
+# =========================
+*.pem
+*.key
+*.crt

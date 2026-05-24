@@ -27,6 +27,7 @@ htmlcov/
 # =========================
 # VARIÁVEIS DE AMBIENTE
 # =========================
+backend/.env
 .env
 .env.local
 .env.production

@@ -1,3 +1,7 @@
 alembic
-SQLAlchemy
-PyMySQL
+fastapi
+sqlalchemy
+pymysql
+python-dotenv
+redis
+uvicorn

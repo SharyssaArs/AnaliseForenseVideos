@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upload Forensic Analysis Video — Detector de Deepfakes</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="/components.css">
+    <link rel="stylesheet" href="/layout.css">
+    <link rel="stylesheet" href="/reset.css">
+    <link rel="stylesheet" href="/variables.css">
+
 </head>
 <body>
 
@@ -12,7 +16,7 @@
 
         <aside class="sidebar">
             <div class="sidebar-brand">
-                <span class="brand-icon">❖</span>
+                <span class="brand-icon"><img src="logo globo.png" alt="Logo"></span>
             </div>
             
             <div class="user-profile">
@@ -26,45 +30,191 @@
             <nav class="sidebar-menu">
                 <ul>
                     <li class="menu-item active">
-                        <a href="#upload">
-                            <span class="icon">📤</span>
-                            <span class="menu-text">UPLOAD</span>
+                        <a href="#home">
+                            <span class="icon">ADICIONAR ICONE</span>
+                            <span class="menu-text">HOME</span>
                         </a>
                     </li>
                     <li class="menu-item">
-                        <a href="#analysis">
-                            <span class="icon">🔍</span>
-                            <span class="menu-text">ANALYSIS</span>
+                        <a href="#analises">
+                            <span class="icon">ADICIONAR ICONE</span>
+                            <span class="menu-text">ANALISES</span>
                         </a>
                     </li>
                     <li class="menu-item">
-                        <a href="#settings">
-                            <span class="icon">⚙️</span>
-                            <span class="menu-text">SETTINGS</span>
+                        <a href="#historico">
+                            <span class="icon">ADICIONAR ICONE</span>
+                            <span class="menu-text">HISTÓRICO</span>
                         </a>
                     </li>
                     <li class="menu-item logout">
-                        <a href="#signout">
-                            <span class="icon">🚪</span>
-                            <span class="menu-text">SIGN OUT</span>
+                        <a href="#sair">
+                            <span class="icon">ADICIONAR ICONE</span>
+                            <span class="menu-text">SAIR</span>
                         </a>
                     </li>
                 </ul>
             </nav>
             
             <div class="sidebar-footer">
-                <a href="#signout" class="logout-footer">
-                    <span class="icon">🚪</span>
-                    <span class="menu-text">SIGN OUT</span>
+                <a href="#sair" class="logout-footer">
+                    <span class="icon">ADICIONAR ICONE</span>
+                    <span class="menu-text">SAIR</span>
                 </a>
             </div>
         </aside>
 
+             <div class="main-content">
+            
+            <header class="content-header">
+                <h1 class="page-title">FAÇA SUA ANÁLISE</h1>
+                <button type="button" class="btn-top-upload">ENVIAR ARQUIVO</button>
+            </header>
+
+            <main>
+                
+                <section class="upload-section">
+                    <h2 class="section-title">seção-de-upload</h2>
+
+                    <form id="upload-form" action="#" method="POST" enctype="multipart/form-data">
+                        
+                        <label for="video-file" id="drop-zone" class="drag-drop-area">
+                            
+                            <div class="cloud-icon-container">
+                                <span class="cloud-icon">☁️</span>
+                            </div>
+                            
+                            <span id="drop-text" class="drag-prompt">Arraste e solte o vídeo forense aqui</span>
+                            <span class="size-limit">Tamanho máximo de envio: 500 MB</span>
+                            
+                            <div class="divider-container">
+                                <span class="divider-text">OU</span>
+                            </div>
+
+                            <div class="fake-upload-button">ESCOLHER ARQUIVO</div>
+
+                            <input type="file" id="video-file" name="file" accept="video/mp4, video/quicktime, video/x-msvideo, video/x-matroska, video/webm" class="visually-hidden" required>
+                        </label>
+
+                        <button type="submit" id="submit-btn" class="visually-hidden">Enviar</button>
+                    </form>
+
+                    <div id="error-area" class="error-message-area" aria-live="assertive">
+                        &lt;área de mensagem de erro&gt;
+                    </div>
+
+                    <div id="progress-wrapper" class="progress-container">
+                        <span class="progress-label">&lt;progresso do envio&gt;</span>
+                        <div class="progress-bg">
+                            <div id="upload-progress" class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="40"></div>
+                        </div>
+                        <div id="status-message" class="status-indicator" aria-live="polite"></div>
+                    </div>
+
+                </section>
+
+                <section class="reports-section">
+                    <h2 class="section-title">Relatórios de Análise Forense de Vídeo</h2>
+                    
+                    <table class="reports-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Nome</th>
+                                <th scope="col">Progresso</th>
+                                <th scope="col">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Vídeo 1</td>
+                                <td>
+                                    <div class="spinner-icon">⏳</div>
+                                </td>
+                                <td><span class="status-tag waiting">AGUARDANDO RESPOSTA</span></td>
+                            </tr>
+                            <tr>
+                                <td>Vídeo 2</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Vídeo 3</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+            </main>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         <div class="main-content">
             
             <header class="content-header">
-                <h1 class="page-title">UPLOAD FORENSIC ANALYSIS VIDEO</h1>
-                <button type="button" class="btn-top-upload">UPLOAD FILE</button>
+                <h1 class="page-title">FAÇA SUA ANÁLISE</h1>
+                <button type="button" class="btn-top-upload">UPLOAD ARQUIVO</button>
             </header>
 
             <main>
@@ -110,7 +260,7 @@
                 </section>
 
                 <section class="reports-section">
-                    <h2 class="section-title">Forensic Analysis Video Reports</h2>
+                    <h2 class="section-title">Relatórios de Análise Forense</h2>
                     
                     <table class="reports-table">
                         <thead>

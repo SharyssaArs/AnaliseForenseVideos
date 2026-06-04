@@ -1,0 +1,20 @@
+:root {
+    --cor-primaria: #2563eb;
+    --cor-secundaria: #1e40af;
+    --cor-sucesso: #16a34a;
+    --cor-perigo: #dc2626;
+    --cor-aviso: #f59e0b;
+
+    --cor-texto: #111827;
+    --cor-fundo: #f8fafc;
+    --cor-borda: #d1d5db;
+
+    --fonte-principal: Arial, sans-serif;
+
+    --espaco-xs: 4px;
+    --espaco-sm: 8px;
+    --espaco-md: 16px;
+    --espaco-lg: 24px;
+
+    --raio: 8px;
+}

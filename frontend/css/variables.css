@@ -1,7 +1,8 @@
+Sim. Troque seu `variaveis.css` por este código corrigido. A correção principal foi tirar os `@keyframes` de dentro do `:root`, porque isso dava erro no CSS. 
+
+```css
 :root {
-    /* ========================================
-       CORES PRIMÁRIAS E SEMÂNTICAS
-       ======================================== */
+    /* CORES PRIMÁRIAS */
     --cor-primaria: #2563eb;
     --cor-primaria-hover: #1d4ed8;
     --cor-primaria-dark: #1e40af;
@@ -32,9 +33,7 @@
     --cor-info-light: #38bdf8;
     --cor-info-lighter: #cffafe;
 
-    /* ========================================
-       CORES NEUTRAS (GRAYSCALE)
-       ======================================== */
+    /* CORES NEUTRAS */
     --cor-texto: #111827;
     --cor-texto-dark: #000000;
     --cor-texto-claro: #ffffff;
@@ -59,16 +58,11 @@
     --cor-sombra: rgba(0, 0, 0, 0.08);
     --cor-sombra-escura: rgba(0, 0, 0, 0.15);
 
-    /* ========================================
-       TIPOGRAFIA - FONTE
-       ======================================== */
-    --fonte-principal: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
-    --fonte-monoespacada: 'Monaco', 'Menlo', 'Courier New', monospace;
-    --fonte-heading: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    /* TIPOGRAFIA */
+    --fonte-principal: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    --fonte-monoespacada: Monaco, Menlo, "Courier New", monospace;
+    --fonte-heading: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
-    /* ========================================
-       TIPOGRAFIA - TAMANHO
-       ======================================== */
     --tamanho-xs: 12px;
     --tamanho-sm: 14px;
     --tamanho-base: 16px;
@@ -80,17 +74,11 @@
     --tamanho-5xl: 48px;
     --tamanho-6xl: 60px;
 
-    /* ========================================
-       TIPOGRAFIA - ALTURA DA LINHA
-       ======================================== */
     --altura-linha-tight: 1.2;
     --altura-linha-normal: 1.5;
     --altura-linha-relaxed: 1.75;
     --altura-linha-loose: 2;
 
-    /* ========================================
-       TIPOGRAFIA - PESO (FONT-WEIGHT)
-       ======================================== */
     --peso-light: 300;
     --peso-normal: 400;
     --peso-medium: 500;
@@ -98,9 +86,7 @@
     --peso-bold: 700;
     --peso-extrabold: 800;
 
-    /* ========================================
-       ESPAÇAMENTO (PADDING/MARGIN)
-       ======================================== */
+    /* ESPAÇAMENTO */
     --espaco-xs: 4px;
     --espaco-sm: 8px;
     --espaco-md: 16px;
@@ -110,9 +96,7 @@
     --espaco-3xl: 48px;
     --espaco-4xl: 64px;
 
-    /* ========================================
-       BORDER RADIUS (ARREDONDAMENTO)
-       ======================================== */
+    /* BORDER RADIUS */
     --raio-none: 0;
     --raio-sm: 4px;
     --raio-md: 6px;
@@ -122,9 +106,7 @@
     --raio-3xl: 24px;
     --raio-full: 9999px;
 
-    /* ========================================
-       SOMBRAS (BOX-SHADOW)
-       ======================================== */
+    /* SOMBRAS */
     --sombra-none: 0 0 0 transparent;
     --sombra-xs: 0 1px 0 rgba(0, 0, 0, 0.04);
     --sombra-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
@@ -136,9 +118,7 @@
     --sombra-card-hover: 0 8px 24px rgba(0, 0, 0, 0.12);
     --sombra-inset: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05);
 
-    /* ========================================
-       TRANSIÇÕES E ANIMAÇÕES
-       ======================================== */
+    /* TRANSIÇÕES */
     --transicao-rapida: 150ms ease-in-out;
     --transicao-normal: 300ms ease-in-out;
     --transicao-lenta: 500ms ease-in-out;
@@ -150,9 +130,7 @@
     --easing-ease-in-out: ease-in-out;
     --easing-cubic: cubic-bezier(0.4, 0, 0.2, 1);
 
-    /* ========================================
-       Z-INDEX (CAMADAS)
-       ======================================== */
+    /* Z-INDEX */
     --z-hide: -1;
     --z-base: 0;
     --z-dropdown: 1000;
@@ -164,9 +142,7 @@
     --z-tooltip: 1070;
     --z-notification: 1080;
 
-    /* ========================================
-       BREAKPOINTS (MEDIA QUERIES)
-       ======================================== */
+    /* BREAKPOINTS */
     --breakpoint-xs: 320px;
     --breakpoint-sm: 640px;
     --breakpoint-md: 768px;
@@ -174,17 +150,12 @@
     --breakpoint-xl: 1280px;
     --breakpoint-2xl: 1536px;
 
-    /* ========================================
-       DIMENSÕES - LARGURA MÁXIMA
-       ======================================== */
+    /* DIMENSÕES */
     --width-max-container: 1200px;
     --width-max-container-lg: 1400px;
     --width-sidebar: 260px;
     --width-sidebar-collapsed: 80px;
 
-    /* ========================================
-       DIMENSÕES - ALTURA
-       ======================================== */
     --altura-header: 64px;
     --altura-footer: 80px;
     --altura-navbar: 56px;
@@ -192,18 +163,14 @@
     --altura-input-lg: 48px;
     --altura-input-sm: 32px;
 
-    /* ========================================
-       OPACIDADE
-       ======================================== */
+    /* OPACIDADE */
     --opacidade-disabled: 0.5;
     --opacidade-hover: 0.9;
     --opacidade-focus: 0.95;
     --opacidade-backdrop: 0.5;
     --opacidade-backdrop-dark: 0.7;
 
-    /* ========================================
-       ÍCONES
-       ======================================== */
+    /* ÍCONES */
     --tamanho-icone-xs: 16px;
     --tamanho-icone-sm: 20px;
     --tamanho-icone-md: 24px;
@@ -211,9 +178,7 @@
     --tamanho-icone-xl: 40px;
     --tamanho-icone-2xl: 48px;
 
-    /* ========================================
-       BOTÕES
-       ======================================== */
+    /* BOTÕES */
     --btn-padding-y: 10px;
     --btn-padding-x: 16px;
     --btn-padding: var(--btn-padding-y) var(--btn-padding-x);
@@ -225,9 +190,7 @@
     --btn-min-width: 44px;
     --btn-min-height: 44px;
 
-    /* ========================================
-       INPUTS E FORMULÁRIOS
-       ======================================== */
+    /* INPUTS */
     --input-padding: 10px 12px;
     --input-border: 1px solid var(--cor-borda);
     --input-border-radius: var(--raio-md);
@@ -238,9 +201,7 @@
     --input-focus-border-color: var(--cor-primaria);
     --input-focus-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 
-    /* ========================================
-       CARDS E PAINÉIS
-       ======================================== */
+    /* CARDS */
     --card-padding: 20px;
     --card-padding-lg: 24px;
     --card-padding-sm: 16px;
@@ -250,126 +211,118 @@
     --card-shadow: var(--sombra-sm);
     --card-shadow-hover: var(--sombra-md);
 
-    /* ========================================
-       BADGES E TAGS
-       ======================================== */
+    /* BADGES */
     --badge-padding: 4px 8px;
     --badge-font-size: var(--tamanho-sm);
     --badge-border-radius: var(--raio-full);
     --badge-font-weight: var(--peso-medium);
 
-    /* ========================================
-       TABELAS
-       ======================================== */
+    /* TABELAS */
     --table-row-height: 44px;
     --table-header-bg: var(--cor-fundo-secundario);
     --table-border-color: var(--cor-borda-light);
     --table-hover-bg: var(--cor-fundo);
 
-    /* ========================================
-       MODAIS E DIÁLOGOS
-       ======================================== */
+    /* MODAIS */
     --modal-backdrop-bg: rgba(0, 0, 0, 0.5);
     --modal-max-width: 500px;
     --modal-max-width-lg: 800px;
     --modal-border-radius: var(--raio-lg);
     --modal-padding: 24px;
 
-    /* ========================================
-       ALERTAS E NOTIFICAÇÕES
-       ======================================== */
+    /* ALERTAS */
     --alert-padding: 12px 16px;
     --alert-border-radius: var(--raio-md);
     --alert-font-size: var(--tamanho-sm);
     --alert-line-height: var(--altura-linha-normal);
+}
 
-    /* ========================================
-       ANIMAÇÕES PREDEFINIDAS
-       ======================================== */
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-        }
-        to {
-            opacity: 1;
-        }
+/* ANIMAÇÕES */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
     }
-
-    @keyframes slideInUp {
-        from {
-            opacity: 0;
-            transform: translateY(10px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    @keyframes slideInDown {
-        from {
-            opacity: 0;
-            transform: translateY(-10px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    @keyframes slideInLeft {
-        from {
-            opacity: 0;
-            transform: translateX(-10px);
-        }
-        to {
-            opacity: 1;
-            transform: translateX(0);
-        }
-    }
-
-    @keyframes slideInRight {
-        from {
-            opacity: 0;
-            transform: translateX(10px);
-        }
-        to {
-            opacity: 1;
-            transform: translateX(0);
-        }
-    }
-
-    @keyframes pulse {
-        0%, 100% {
-            opacity: 1;
-        }
-        50% {
-            opacity: 0.5;
-        }
-    }
-
-    @keyframes spin {
-        from {
-            transform: rotate(0deg);
-        }
-        to {
-            transform: rotate(360deg);
-        }
-    }
-
-    @keyframes bounce {
-        0%, 100% {
-            transform: translateY(0);
-        }
-        50% {
-            transform: translateY(-10px);
-        }
+    to {
+        opacity: 1;
     }
 }
 
-/* ========================================
-   MODO ESCURO (Dark Mode)
-   ======================================== */
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes pulse {
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes bounce {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* DARK MODE */
 @media (prefers-color-scheme: dark) {
     :root {
         --cor-texto: #f1f5f9;
@@ -414,9 +367,7 @@
     }
 }
 
-/* ========================================
-   CLASSES UTILITÁRIAS
-   ======================================== */
+/* CLASSES UTILITÁRIAS */
 .container-fluid {
     width: 100%;
     padding-left: var(--espaco-md);
@@ -457,3 +408,4 @@
         max-width: var(--width-max-container-lg);
     }
 }
+```

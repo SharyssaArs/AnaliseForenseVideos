@@ -4,11 +4,13 @@
     --cor-sucesso: #16a34a;
     --cor-perigo: #dc2626;
     --cor-aviso: #f59e0b;
+
     --cor-texto: #111827;
     --cor-texto-claro: #ffffff;
     --cor-fundo: #f8fafc;
     --cor-card: #ffffff;
     --cor-borda: #d1d5db;
+    --cor-sombra: rgba(0, 0, 0, 0.08);
 
     --fonte-principal: Arial, sans-serif;
 
@@ -22,4 +24,7 @@
     --raio-sm: 6px;
     --raio-md: 8px;
     --raio-lg: 12px;
+    --raio-xl: 16px;
+
+    --sombra-card: 0 4px 12px var(--cor-sombra);
 }

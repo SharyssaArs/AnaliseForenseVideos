@@ -1,19 +1,42 @@
 :root {
+    /* === CORES PRIMÁRIAS === */
     --cor-primaria: #2563eb;
     --cor-secundaria: #1e40af;
     --cor-sucesso: #16a34a;
     --cor-perigo: #dc2626;
     --cor-aviso: #f59e0b;
 
+    /* === CORES NEUTRAS === */
     --cor-texto: #111827;
     --cor-texto-claro: #ffffff;
+    --cor-texto-secundario: #6b7280;
     --cor-fundo: #f8fafc;
+    --cor-fundo-secundario: #f3f4f6;
     --cor-card: #ffffff;
     --cor-borda: #d1d5db;
     --cor-sombra: rgba(0, 0, 0, 0.08);
 
-    --fonte-principal: Arial, sans-serif;
+    /* === TIPOGRAFIA === */
+    --fonte-principal: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+    --tamanho-xs: 12px;
+    --tamanho-sm: 14px;
+    --tamanho-base: 16px;
+    --tamanho-lg: 18px;
+    --tamanho-xl: 20px;
+    --tamanho-2xl: 24px;
+    --tamanho-3xl: 30px;
+    --tamanho-4xl: 36px;
 
+    --altura-linha-tight: 1.2;
+    --altura-linha-normal: 1.5;
+    --altura-linha-relaxed: 1.75;
+
+    --peso-light: 300;
+    --peso-normal: 400;
+    --peso-semibold: 600;
+    --peso-bold: 700;
+
+    /* === ESPAÇAMENTO === */
     --espaco-xs: 4px;
     --espaco-sm: 8px;
     --espaco-md: 16px;
@@ -21,10 +44,37 @@
     --espaco-xl: 32px;
     --espaco-xxl: 48px;
 
+    /* === BORDER RADIUS === */
     --raio-sm: 6px;
     --raio-md: 8px;
     --raio-lg: 12px;
     --raio-xl: 16px;
 
+    /* === SOMBRAS === */
     --sombra-card: 0 4px 12px var(--cor-sombra);
+    --sombra-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --sombra-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --sombra-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --sombra-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+
+    /* === TRANSIÇÕES === */
+    --transicao-rapida: 150ms ease-in-out;
+    --transicao-normal: 300ms ease-in-out;
+    --transicao-lenta: 500ms ease-in-out;
+
+    /* === Z-INDEX === */
+    --z-dropdown: 1000;
+    --z-sticky: 100;
+    --z-fixed: 1020;
+    --z-modal-backdrop: 1040;
+    --z-modal: 1050;
+    --z-popover: 1060;
+    --z-tooltip: 1070;
+
+    /* === BREAKPOINTS (para uso em CSS) === */
+    --breakpoint-sm: 640px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 1024px;
+    --breakpoint-xl: 1280px;
+    --breakpoint-2xl: 1536px;
 }

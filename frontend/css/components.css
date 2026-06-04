@@ -2,6 +2,7 @@
     padding: var(--espaco-md);
     border-radius: var(--raio);
     border: none;
+    cursor: pointer;
 }
 
 .card {
@@ -10,6 +11,7 @@
 }
 
 .badge {
+    display: inline-block;
     padding: var(--espaco-xs) var(--espaco-sm);
     border-radius: var(--raio);
 }
@@ -19,9 +21,13 @@
 }
 
 .drop-area {
+    padding: var(--espaco-lg);
     border: 2px dashed var(--cor-borda);
+    border-radius: var(--raio);
 }
 
 .spinner {
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
 }

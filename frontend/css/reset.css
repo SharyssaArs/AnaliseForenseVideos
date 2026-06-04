@@ -1,6 +1,3 @@
-Troque o conteúdo do seu `reset.css` por este:
-
-```css
 *,
 *::before,
 *::after {
@@ -74,4 +71,3 @@ svg {
     display: block;
     overflow: visible;
 }
-```

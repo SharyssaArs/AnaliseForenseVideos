@@ -1,13 +1,13 @@
 :root {
     --cor-primaria: #2563eb;
     --cor-secundaria: #1e40af;
-
     --cor-sucesso: #16a34a;
     --cor-perigo: #dc2626;
     --cor-aviso: #f59e0b;
-
     --cor-texto: #111827;
+    --cor-texto-claro: #ffffff;
     --cor-fundo: #f8fafc;
+    --cor-card: #ffffff;
     --cor-borda: #d1d5db;
 
     --fonte-principal: Arial, sans-serif;
@@ -17,6 +17,9 @@
     --espaco-md: 16px;
     --espaco-lg: 24px;
     --espaco-xl: 32px;
+    --espaco-xxl: 48px;
 
-    --raio: 8px;
+    --raio-sm: 6px;
+    --raio-md: 8px;
+    --raio-lg: 12px;
 }

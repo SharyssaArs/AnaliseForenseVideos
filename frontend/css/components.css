@@ -1,0 +1,27 @@
+.btn {
+    padding: var(--espaco-md);
+    border-radius: var(--raio);
+    border: none;
+}
+
+.card {
+    padding: var(--espaco-lg);
+    border-radius: var(--raio);
+}
+
+.badge {
+    padding: var(--espaco-xs) var(--espaco-sm);
+    border-radius: var(--raio);
+}
+
+.progress {
+    width: 100%;
+}
+
+.drop-area {
+    border: 2px dashed var(--cor-borda);
+}
+
+.spinner {
+    border-radius: 50%;
+}

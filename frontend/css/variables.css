@@ -1,6 +1,3 @@
-Sim. Troque seu `variaveis.css` por este código corrigido. A correção principal foi tirar os `@keyframes` de dentro do `:root`, porque isso dava erro no CSS. 
-
-```css
 :root {
     /* CORES PRIMÁRIAS */
     --cor-primaria: #2563eb;

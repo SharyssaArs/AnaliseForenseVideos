@@ -1,0 +1,38 @@
+.page {
+    min-height: 100vh;
+    background: var(--cor-fundo);
+    padding: var(--espaco-xl) 0;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--espaco-lg);
+}
+
+.header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--espaco-md);
+    margin-bottom: var(--espaco-xl);
+}
+
+.grid {
+    display: grid;
+    gap: var(--espaco-lg);
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+    gap: var(--espaco-md);
+}
+
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

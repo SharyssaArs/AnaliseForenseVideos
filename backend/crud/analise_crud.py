@@ -42,6 +42,17 @@ def get_analise_by_hash(
         .first()
     )
 
+# ->
+def get_analise_by_task_id(
+    db: Session,
+    task_id: str,
+):
+    return (
+        db.query(Analise)
+        .filter(Analise.task_id == task_id)
+        .first()
+    )
+
 
 def update_analise_status(
     db: Session,

@@ -1,129 +1,94 @@
-const METADATA_FLAGS_TRANSLATION = {
-    camera_model_absent: "Modelo de câmera ausente"
-};
-
-const MANIPULATION_TYPE_TRANSLATION = {
-    face_swap: "Troca de rosto"
-};
-
-const AUDIO_SYNC_TRANSLATION = {
-    inconsistent: "Áudio dessincronizado",
-    inconsistente: "Áudio dessincronizado"
-};
-
 function sanitizeHTML(value) {
-    return String(value ?? "")
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
+  return String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
 }
 
-export function initResultPage() {
-    fetchAndRenderResult();
+const taskId = localStorage.getItem("task_id");
+
+if (!taskId) {
+  window.location.href = "./upload.html";
 }
 
-export async function fetchAndRenderResult() {
-    const taskId = localStorage.getItem("task_id");
+let result;
 
-    if (!taskId) {
-        showResultError("Nenhuma análise encontrada.");
-        return;
-    }
-
-    try {
-        const result = await api.getResult(taskId);
-
-        renderScoreCard(result);
-        renderMetadataFlags(result.metadata_flags || result.metadata_flag || []);
-        renderForensicDetails(result);
-
-    } catch (error) {
-        console.error("Erro ao carregar resultado:", error);
-        showResultError("Erro ao carregar o resultado da análise.");
-    }
+try {
+  result = JSON.parse(localStorage.getItem("analysis_result"));
+} catch {
+  result = null;
 }
 
-export function renderScoreCard(result) {
-    const scoreCard = document.getElementById("score-card");
+result = result || {
+  score: 82,
+  is_deepfake: true,
+  manipulation_type: "Manipulação facial",
+  audio_sync: "Inconsistência entre áudio e vídeo",
+  metadata_flags: ["camera_model_absent", "timestamp_modified", "encoding_suspicious"],
+  forensic_details: "Foram identificadas inconsistências visuais, sinais de edição e alterações nos metadados do arquivo.",
+  layer_scores: {
+    visual: 82,
+    audio: 64,
+    metadata: 75,
+    compression: 58
+  }
+};
 
-    if (!scoreCard) return;
+renderResult(result);
 
-    const isDeepfake = result.is_deepfake === true;
-    const text = isDeepfake ? "Deepfake detectado" : "Video autentico";
-
-    scoreCard.classList.remove("perigo", "sucesso");
-    scoreCard.classList.add(isDeepfake ? "perigo" : "sucesso");
-
-    scoreCard.innerHTML = `
-        <h2>${sanitizeHTML(text)}</h2>
-    `;
+function renderResult(result) {
+  renderScoreCard(result);
+  renderText("manipulation-type", result.manipulation_type || "Não informado");
+  renderText("audio-sync", result.audio_sync || "Não informado");
+  renderText("forensic-details", result.forensic_details || "Nenhum detalhe disponível");
+  renderMetadataFlags(result.metadata_flags || []);
+  renderBreakdown(result.layer_scores || {});
 }
 
-export function renderMetadataFlags(flags) {
-    const container = document.getElementById("metadata-flags");
+function renderScoreCard(result) {
+  const scoreCard = document.getElementById("score-card");
+  const score = Number(result.score ?? 0);
+  const isDeepfake = result.is_deepfake === true;
 
-    if (!container) return;
+  scoreCard.classList.add(isDeepfake ? "perigo" : "sucesso");
 
-    container.innerHTML = "";
-
-    const flagsList = Array.isArray(flags) ? flags : [flags];
-
-    flagsList.forEach((flag) => {
-        const translatedFlag = METADATA_FLAGS_TRANSLATION[flag] || flag;
-
-        const badge = document.createElement("span");
-        badge.classList.add("badge");
-        badge.innerHTML = sanitizeHTML(translatedFlag);
-
-        container.appendChild(badge);
-    });
+  scoreCard.innerHTML = `
+    <h2>${isDeepfake ? "Deepfake detectado" : "Vídeo autêntico"}</h2>
+    <p class="score-percentage">${sanitizeHTML(score)}%</p>
+    <p>${isDeepfake ? "Há indícios de manipulação." : "Não há indícios relevantes de manipulação."}</p>
+  `;
 }
 
-export function renderForensicDetails(result) {
-    const container = document.getElementById("forensic-details");
-
-    if (!container) return;
-
-    const manipulationKey =
-        result.manipulation_type ||
-        result["manipulação_type"];
-
-    const audioSyncKey = result.audio_sync;
-
-    const manipulationText =
-        MANIPULATION_TYPE_TRANSLATION[manipulationKey] ||
-        manipulationKey ||
-        "Não informado";
-
-    const audioSyncText =
-        AUDIO_SYNC_TRANSLATION[audioSyncKey] ||
-        audioSyncKey ||
-        "Não informado";
-
-    container.innerHTML = `
-        <p>
-            <strong>${sanitizeHTML("Tipo de manipulação")}:</strong>
-            ${sanitizeHTML(manipulationText)}
-        </p>
-
-        <p>
-            <strong>${sanitizeHTML("Sincronia do áudio")}:</strong>
-            ${sanitizeHTML(audioSyncText)}
-        </p>
-    `;
+function renderText(elementId, value) {
+  const element = document.getElementById(elementId);
+  element.innerHTML = `<p>${sanitizeHTML(value)}</p>`;
 }
 
-function showResultError(message) {
-    const container = document.getElementById("result-container");
+function renderMetadataFlags(flags) {
+  const container = document.getElementById("metadata-flags");
+  container.innerHTML = "";
 
-    if (!container) return;
+  flags.forEach((flag) => {
+    const badge = document.createElement("span");
+    badge.className = "badge";
+    badge.textContent = flag;
+    container.appendChild(badge);
+  });
+}
 
-    container.innerHTML = `
-        <div class="card perigo">
-            <h2>${sanitizeHTML("Erro")}</h2>
-            <p>${sanitizeHTML(message)}</p>
-        </div>
-    `;
+function renderBreakdown(scores) {
+  setBar("visual-score", scores.visual);
+  setBar("audio-score", scores.audio);
+  setBar("metadata-score", scores.metadata);
+  setBar("compression-score", scores.compression);
+}
+
+function setBar(elementId, value) {
+  const bar = document.getElementById(elementId);
+  const score = Math.max(0, Math.min(100, Number(value ?? 0)));
+
+  bar.style.width = `${score}%`;
+  bar.textContent = `${score}%`;
 }

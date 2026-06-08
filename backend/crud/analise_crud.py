@@ -41,8 +41,7 @@ def get_analise_by_hash(
         .order_by(Analise.atualizado_em.desc())
         .first()
     )
-
-# ->
+# Função pra usar em analyze.py
 def get_analise_by_task_id(
     db: Session,
     task_id: str,

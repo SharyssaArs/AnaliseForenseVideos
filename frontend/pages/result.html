@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resultado da Análise</title>
+
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+</head>
+<body>
+  <main id="result-container" class="page">
+    <div class="container">
+      <header class="header">
+        <h1>Resultado da Análise Forense</h1>
+        <a href="upload.html" class="btn">Nova análise</a>
+      </header>
+
+      <section id="score-card" class="card score-card"></section>
+
+      <section class="card result-section">
+        <h2>Tipo de Manipulação</h2>
+        <div id="manipulation-type"></div>
+      </section>
+
+      <section class="card result-section">
+        <h2>Sincronia de Áudio</h2>
+        <div id="audio-sync"></div>
+      </section>
+
+      <section class="card result-section">
+        <h2>Flags de Metadados</h2>
+        <div id="metadata-flags" class="metadata-flags"></div>
+      </section>
+
+      <section class="card result-section">
+        <h2>Detalhes Forenses</h2>
+        <div id="forensic-details"></div>
+      </section>
+
+      <section class="card result-section">
+        <h2>Breakdown de Scores por Camada</h2>
+
+        <div id="breakdown-scores" class="breakdown-list">
+          <div class="breakdown-item">
+            <span>Visual</span>
+            <div class="progress">
+              <div id="visual-score" class="progress-bar"></div>
+            </div>
+          </div>
+
+          <div class="breakdown-item">
+            <span>Áudio</span>
+            <div class="progress">
+              <div id="audio-score" class="progress-bar"></div>
+            </div>
+          </div>
+
+          <div class="breakdown-item">
+            <span>Metadados</span>
+            <div class="progress">
+              <div id="metadata-score" class="progress-bar"></div>
+            </div>
+          </div>
+
+          <div class="breakdown-item">
+            <span>Compressão</span>
+            <div class="progress">
+              <div id="compression-score" class="progress-bar"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script type="module" src="../js/result.js"></script>
+</body>
+</html>

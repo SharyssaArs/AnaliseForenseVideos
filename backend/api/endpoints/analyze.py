@@ -7,9 +7,7 @@ from fastapi import (
 
 from backend.core.database import get_db
 
-from backend.crud.analise import (
-    get_analise_by_task_id,
-)
+from backend.crud import get_analise_by_task_id
 
 router = APIRouter()
 

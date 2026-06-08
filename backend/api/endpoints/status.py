@@ -6,7 +6,7 @@ from fastapi import (
 
 from backend.core.database import get_db
 
-from backend.crud.analise import (
+from backend.crud import (
     get_analise_by_task_id,
 )
 

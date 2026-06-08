@@ -52,6 +52,28 @@ def get_analise_by_task_id(
         .first()
     )
 
+# -->
+def get_history_by_user(
+    db: Session,
+    user_id: str,
+    page: int,
+    limit: int,
+):
+    offset = (page - 1) * limit
+
+    return (
+        db.query(Analise)
+        .filter(
+            Analise.user_id == user_id
+        )
+        .order_by(
+            Analise.criado_em.desc()
+        )
+        .offset(offset)
+        .limit(limit)
+        .all()
+    )
+
 def update_analise_status(
     db: Session,
     analise_id: str,

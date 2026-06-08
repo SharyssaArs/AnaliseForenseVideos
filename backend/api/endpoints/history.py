@@ -5,12 +5,12 @@ from fastapi import (
 
 from backend.core.database import get_db
 
-from backend.crud.analise import (
+from backend.crud import (
     get_analise_by_task_id,
     get_history_by_user,
 )
 
-from backend.crud.log_processamento import (
+from backend.crud import (
     get_logs_by_analise_id,
 )
 

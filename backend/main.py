@@ -17,6 +17,7 @@ from fastapi.responses import JSONResponse
 from sqlalchemy import text
 from starlette.middleware.base import BaseHTTPMiddleware
 
+from backend.api.endpoints.cache import router as cache_router
 from backend.core.database import Base, engine
 from backend.models import analise, log_processamento, resultado_ia, usuario
 
@@ -106,6 +107,8 @@ app.add_middleware(
 )
 
 app.add_middleware(RateLimitMiddleware)
+
+app.include_router(cache_router)
 
 
 @app.get("/health", tags=["Health"])

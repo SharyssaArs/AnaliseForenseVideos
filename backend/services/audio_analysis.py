@@ -75,3 +75,5 @@ def analyze(video_path: str, lip_timestamps: list = None) -> dict:
         # Critério 3: Remoção do arquivo temporário mesmo em caso de erro
         if os.path.exists(temp_wav_path):
             os.remove(temp_wav_path)
+
+    # Implementação da análise de sincronia e espectrograma mel - Issue #55

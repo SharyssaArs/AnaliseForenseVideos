@@ -5,3 +5,8 @@ pymysql
 python-dotenv
 redis
 uvicorn
+opencv-python
+numpy
+torch
+torchvision
+timm

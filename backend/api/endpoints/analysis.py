@@ -4,6 +4,8 @@ from sqlalchemy.orm import Session
 from backend.core.database import get_db
 from backend.models.analise import Analise
 
+from backend.api.dependencies.auth import get_current_user
+
 router = APIRouter()
 
 
@@ -11,6 +13,7 @@ router = APIRouter()
 def cancel_analysis(
     task_id: str,
     db: Session = Depends(get_db),
+    current_user: str = Depends(get_current_user),
 ):
 
     analise = (

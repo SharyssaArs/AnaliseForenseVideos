@@ -1,5 +1,3 @@
-import { analyzeVideo, getStatus } from './api.js';
-
 const MAX_FILE_SIZE = 500 * 1024 * 1024; // 500 MB em bytes
 const ALLOWED_EXTENSIONS = ['.mp4', '.mov', '.avi', '.mkv', '.webm'];
 
@@ -7,7 +5,7 @@ let pollingInterval = null;
 
 export function initUploadPage() {
     setupDragAndDrop();
-
+    
     const form = document.getElementById('upload-form');
     if (form) {
         form.addEventListener('submit', handleSubmit);
@@ -16,7 +14,7 @@ export function initUploadPage() {
 
 function setupDragAndDrop() {
     const dropZone = document.getElementById('drop-zone');
-    const fileInput = document.getElementById('video-file');
+    const fileInput = document.getElementById('file-input');
 
     if (!dropZone || !fileInput) return;
 
@@ -32,7 +30,7 @@ function setupDragAndDrop() {
     dropZone.addEventListener('drop', (e) => {
         e.preventDefault();
         dropZone.classList.remove('dragover');
-
+        
         if (e.dataTransfer.files.length > 0) {
             fileInput.files = e.dataTransfer.files;
         }
@@ -46,13 +44,13 @@ function validateFile(file) {
 
     const fileName = file.name;
     const ext = fileName.substring(fileName.lastIndexOf('.')).toLowerCase();
-
+    
     if (!ALLOWED_EXTENSIONS.includes(ext)) {
         return { isValid: false, message: "Formato não suportado." };
     }
 
     if (file.size > MAX_FILE_SIZE) {
-        return { isValid: false, message: "Arquivo muito grande. O limite é de 500 MB." };
+        return { isValid: false, message: "Arquivo muito grande antes do envio. O limite é de 500 MB." };
     }
 
     return { isValid: true, message: "" };
@@ -60,9 +58,9 @@ function validateFile(file) {
 
 async function handleSubmit(event) {
     event.preventDefault();
-
+    
     const submitBtn = document.getElementById('submit-btn');
-    const fileInput = document.getElementById('video-file');
+    const fileInput = document.getElementById('file-input');
     const file = fileInput.files[0];
 
     hideError();
@@ -71,12 +69,13 @@ async function handleSubmit(event) {
     const validation = validateFile(file);
     if (!validation.isValid) {
         showError(validation.message);
-        submitBtn.disabled = false;
+        submitBtn.disabled = false; 
         return;
     }
 
     try {
-        const response = await analyzeVideo(file);
+        // Assume que o módulo 'api' já foi importado ou está global
+        const response = await api.analyzeVideo(file);
 
         if (response && response.task_id) {
             startPolling(response.task_id);
@@ -94,7 +93,7 @@ function startPolling(taskId) {
 
     pollingInterval = setInterval(async () => {
         try {
-            const statusResponse = await getStatus(taskId);
+            const statusResponse = await api.getStatus(taskId);
 
             updateProgressBar(statusResponse.progress || 0);
 
@@ -102,34 +101,29 @@ function startPolling(taskId) {
                 clearInterval(pollingInterval);
                 localStorage.setItem('task_id', taskId);
                 window.location.href = 'result.html';
-
+                
             } else if (statusResponse.status === 'failed') {
                 clearInterval(pollingInterval);
                 showError(statusResponse.error_message || "Ocorreu um erro durante a análise.");
                 document.getElementById('submit-btn').disabled = false;
             }
-
+            
         } catch (error) {
             console.error("Erro ao verificar o status:", error);
         }
-    }, 5000);
+    }, 5000); // Polling a cada 5 segundos
 }
 
 function updateProgressBar(progressPercent) {
-    const progressBar = document.getElementById('upload-progress');
+    const progressBar = document.getElementById('progress-bar');
     if (progressBar) {
         progressBar.style.width = `${progressPercent}%`;
-        progressBar.setAttribute('aria-valuenow', progressPercent);
-
-        const statusMessage = document.getElementById('status-message');
-        if (statusMessage) {
-            statusMessage.textContent = `${progressPercent}%`;
-        }
+        progressBar.textContent = `${progressPercent}%`;
     }
 }
 
 function showError(message) {
-    const errorDisplay = document.getElementById('error-area');
+    const errorDisplay = document.getElementById('error-display');
     if (errorDisplay) {
         errorDisplay.textContent = message;
         errorDisplay.style.display = 'block';
@@ -137,12 +131,9 @@ function showError(message) {
 }
 
 function hideError() {
-    const errorDisplay = document.getElementById('error-area');
+    const errorDisplay = document.getElementById('error-display');
     if (errorDisplay) {
         errorDisplay.textContent = '';
         errorDisplay.style.display = 'none';
     }
 }
-
-// Inicializa a página automaticamente
-initUploadPage();

@@ -7,3 +7,4 @@ redis
 uvicorn
 pydantic-settings
 python-multipart
+python-magic

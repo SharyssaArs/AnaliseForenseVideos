@@ -10,9 +10,6 @@ from backend.api.dependencies.auth import get_current_user
 from backend.crud import (
     get_analise_by_task_id,
     get_history_by_user,
-)
-
-from backend.crud import (
     get_logs_by_analise_id,
 )
 

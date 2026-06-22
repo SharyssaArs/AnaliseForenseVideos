@@ -5,6 +5,8 @@ pymysql
 python-dotenv
 redis
 uvicorn
+bcrypt
+PyJWT
 pydantic-settings
 python-multipart
 python-magic

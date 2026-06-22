@@ -40,6 +40,15 @@ def get_db():
     finally:
         db.close()
 
+
+def get_db_session():
+    """Fornece uma sessao SQLAlchemy para dependencies do FastAPI."""
+    db: Session = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+
 # Função para criar todas as tabelas na inicialização
 def create_all_tables():
     Base.metadata.create_all(bind=engine)

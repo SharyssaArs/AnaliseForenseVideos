@@ -4,11 +4,22 @@ from backend.core.database import get_db
 from backend.models.analise import Analise
 from backend.models.resultado_ia import ResultadoIA
 
+from backend.api.dependencies.auth import get_current_user
+
 router = APIRouter()
 
 
 @router.get("/result/{task_id}")
-def get_result(task_id: str):
+def get_result(
+    task_id: str,
+    db: Session = Depends(get_db),
+    current_user: str = Depends(get_current_user),
+):
+    analise = (
+        db.query(Analise)
+        .filter(Analise.task_id == task_id)
+        .first()
+    )
 
     with get_db() as db:
 

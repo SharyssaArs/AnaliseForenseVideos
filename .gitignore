@@ -2,7 +2,8 @@
 # PYTHON
 # =========================
 __pycache__/
-*.py[cod]
+*.pyc
+*.pyo
 *$py.class
 
 # Ambientes virtuais
@@ -33,9 +34,10 @@ htmlcov/
 .env.production
 
 # =========================
-# FASTAPI / UVICORN
+# FASTAPI / UVICORN / LOGS
 # =========================
 *.log
+logs/
 
 # =========================
 # CELERY
@@ -72,8 +74,6 @@ models/checkpoints/
 # =========================
 *.db
 *.sqlite3
-
-# Dumps
 *.sql
 
 # =========================
@@ -99,8 +99,6 @@ Thumbs.db
 # FRONTEND
 # =========================
 node_modules/
-
-# Cache frontend
 .cache/
 dist/
 

@@ -1,9 +1,11 @@
 from fastapi import (
     APIRouter,
     HTTPException,
+    Depends,
 )
 
 from backend.core.database import get_db
+from backend.api.dependencies.auth import get_current_user
 
 from backend.crud import (
     get_analise_by_task_id,
@@ -17,6 +19,7 @@ router = APIRouter()
 async def get_history(
     page: int = 1,
     limit: int = 10,
+    current_user: str = Depends(get_current_user),
 ):
 
     try:
@@ -73,6 +76,7 @@ async def get_history(
 @router.get("/analysis/{task_id}")
 async def get_analysis(
     task_id: str,
+    current_user: str = Depends(get_current_user),
 ):
 
     try:

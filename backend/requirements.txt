@@ -7,3 +7,6 @@ redis
 uvicorn
 bcrypt
 PyJWT
+pydantic-settings
+python-multipart
+python-magic

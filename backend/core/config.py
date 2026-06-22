@@ -21,6 +21,7 @@ class Settings(BaseSettings):
     DEBUG: bool = True
     API_V1_PREFIX: str = "/api/v1"
     LOG_LEVEL: str = "INFO"
+    ALLOWED_ORIGINS: str = "*"
 
     model_config = SettingsConfigDict(
         env_file=".env",

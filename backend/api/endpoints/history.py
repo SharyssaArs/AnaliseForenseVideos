@@ -8,9 +8,6 @@ from backend.core.database import get_db
 from backend.crud import (
     get_analise_by_task_id,
     get_history_by_user,
-)
-
-from backend.crud import (
     get_logs_by_analise_id,
 )
 

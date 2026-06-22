@@ -4,7 +4,9 @@ from pathlib import Path
 from uuid import uuid4
 from datetime import datetime, timezone
 
-from fastapi import APIRouter, UploadFile, File, HTTPException, status
+from fastapi import APIRouter, UploadFile, File, HTTPException, status, Depends
+
+from backend.api.dependencies.auth import get_current_user
 
 from backend.services.video_validator import validate
 from backend.services.hash_service import (
@@ -31,7 +33,8 @@ BASE_UPLOAD_DIR = Path("uploads")
     status_code=status.HTTP_202_ACCEPTED
 )
 async def analyze(
-    file: UploadFile = File(...)
+    file: UploadFile = File(...),
+    current_user: str = Depends(get_current_user),
 ):
     """
     POST /analyze

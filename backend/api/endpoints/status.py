@@ -2,9 +2,11 @@ from uuid import UUID
 from fastapi import (
     APIRouter,
     HTTPException,
+    Depends,
 )
 
 from backend.core.database import get_db
+from backend.api.dependencies.auth import get_current_user
 
 from backend.crud import (
     get_analise_by_task_id,
@@ -13,7 +15,7 @@ from backend.crud import (
 router = APIRouter()
 
 @router.get("/status/{task_id}")
-async def get_status( task_id: str ):
+async def get_status( task_id: str, current_user: str = Depends(get_current_user), ):
     try:
         UUID(task_id)
 

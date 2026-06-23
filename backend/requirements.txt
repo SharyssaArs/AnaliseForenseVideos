@@ -10,3 +10,8 @@ PyJWT
 pydantic-settings
 python-multipart
 python-magic
+opencv-python
+numpy
+torch
+timm
+librosa

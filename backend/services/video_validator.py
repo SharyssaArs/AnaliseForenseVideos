@@ -2,7 +2,6 @@ import os
 import subprocess
 from pathlib import Path
 
-import magic
 
 MAX_FILE_SIZE_MB = 500
 ALLOWED_EXTENSIONS = {".mp4", ".mov", ".avi", ".mkv", ".webm"}
@@ -15,15 +14,29 @@ ALLOWED_MIME_TYPES = {
 }
 
 
+def detect_mime_type(file_path: str) -> tuple[str | None, str | None]:
+    """
+    Usa python-magic quando a libmagic nativa estiver instalada.
+    No Windows local, a DLL pode faltar; nesse caso o backend deve continuar subindo.
+    """
+    try:
+        import magic
+
+        return magic.from_file(file_path, mime=True), None
+    except Exception as error:
+        return None, str(error)
+
+
 def validate(file_path: str, filename: str) -> dict:
     errors = []
+    warnings = []
     is_valid = True
 
     ext = Path(filename).suffix.lower()
 
     if ext not in ALLOWED_EXTENSIONS:
         errors.append(
-            f"Extensão inválida: {ext}. Permitidas: {', '.join(ALLOWED_EXTENSIONS)}"
+            f"Extensao invalida: {ext}. Permitidas: {', '.join(ALLOWED_EXTENSIONS)}"
         )
         is_valid = False
 
@@ -38,25 +51,25 @@ def validate(file_path: str, filename: str) -> dict:
             is_valid = False
 
     except FileNotFoundError:
-        errors.append("Arquivo não encontrado.")
-        return {"is_valid": False, "errors": errors}
+        errors.append("Arquivo nao encontrado.")
+        return {"is_valid": False, "errors": errors, "warnings": warnings}
 
     if not is_valid:
-        return {"is_valid": False, "errors": errors}
+        return {"is_valid": False, "errors": errors, "warnings": warnings}
 
-    try:
-        mime_type = magic.from_file(file_path, mime=True)
+    mime_type, mime_error = detect_mime_type(file_path)
 
-        if mime_type not in ALLOWED_MIME_TYPES:
-            errors.append(f"Tipo MIME inválido: {mime_type}.")
-            is_valid = False
-
-    except Exception as error:
-        errors.append(f"Erro ao validar MIME type: {str(error)}")
+    if mime_type is None:
+        warnings.append(
+            "Validacao MIME ignorada porque python-magic/libmagic nao esta disponivel: "
+            f"{mime_error}"
+        )
+    elif mime_type not in ALLOWED_MIME_TYPES:
+        errors.append(f"Tipo MIME invalido: {mime_type}.")
         is_valid = False
 
     if not is_valid:
-        return {"is_valid": False, "errors": errors}
+        return {"is_valid": False, "errors": errors, "warnings": warnings}
 
     try:
         command = [
@@ -76,18 +89,18 @@ def validate(file_path: str, filename: str) -> dict:
         )
 
     except subprocess.CalledProcessError:
-        errors.append("O arquivo não é um vídeo válido ou está corrompido.")
+        errors.append("O arquivo nao e um video valido ou esta corrompido.")
         is_valid = False
 
     except FileNotFoundError:
-        errors.append("FFprobe não está instalado ou não foi encontrado.")
-        is_valid = False
+        warnings.append("FFprobe nao esta instalado ou nao foi encontrado.")
 
     except Exception as error:
-        errors.append(f"Erro inesperado ao validar vídeo: {str(error)}")
+        errors.append(f"Erro inesperado ao validar video: {str(error)}")
         is_valid = False
 
     return {
         "is_valid": is_valid,
         "errors": errors,
+        "warnings": warnings,
     }

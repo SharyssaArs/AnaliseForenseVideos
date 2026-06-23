@@ -2,7 +2,7 @@ import re
 
 from fastapi import APIRouter, Depends, HTTPException, status
 
-from backend.core.database import get_db
+from backend.core.database import get_db_context
 from backend.crud.analise_crud import get_analise_by_hash
 from backend.api.dependencies.auth import get_current_user
 
@@ -24,7 +24,7 @@ def verificar_cache(
             detail="Formato de hash inválido. O hash SHA-256 deve conter exatamente 64 caracteres hexadecimais."
         )
     
-    with get_db() as db:
+    with get_db_context() as db:
         analise = get_analise_by_hash(db, hash)
 
     if analise is None:

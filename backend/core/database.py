@@ -6,6 +6,8 @@ from sqlalchemy.exc import SQLAlchemyError
 from contextlib import contextmanager
 import logging
 
+from backend.core.config import settings
+
 # Configura o logger
 logging.basicConfig(level=logging.INFO, format='%(asctime)s [%(levelname)s] %(message)s')
 
@@ -13,7 +15,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s [%(levelname)s] %(me
 Base = declarative_base()
 
 # Configuração do engine MySQL com pool de conexões
-DATABASE_URL = "mysql+pymysql://app_user:app_password@localhost/forensic_db"
+DATABASE_URL = settings.DATABASE_URL
 
 engine = create_engine(
     DATABASE_URL,

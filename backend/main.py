@@ -17,8 +17,12 @@ from fastapi.responses import JSONResponse
 from sqlalchemy import text
 from starlette.middleware.base import BaseHTTPMiddleware
 
+from backend.api.endpoints.analyze import router as analyze_router
 from backend.api.endpoints.cache import router as cache_router
 from backend.api.endpoints.auth import router as auth_router
+from backend.api.endpoints.result import router as result_router
+from backend.api.endpoints.status import router as status_router
+from backend.core.config import settings
 from backend.core.database import Base, engine
 from backend.models import analise, log_processamento, resultado_ia, usuario
 
@@ -65,10 +69,7 @@ async def lifespan(app: FastAPI):
     with engine.connect() as connection:
         connection.execute(text("SELECT 1"))
 
-    redis_client = redis.Redis.from_url(
-        "redis://localhost:6379/0",
-        decode_responses=True,
-    )
+    redis_client = redis.Redis.from_url(settings.REDIS_URL, decode_responses=True)
     redis_client.ping()
 
     Base.metadata.create_all(bind=engine)
@@ -109,7 +110,10 @@ app.add_middleware(
 
 app.add_middleware(RateLimitMiddleware)
 
-app.include_router(cache_router)
+app.include_router(analyze_router, prefix=settings.API_V1_PREFIX, tags=["Analysis"])
+app.include_router(status_router, prefix=settings.API_V1_PREFIX, tags=["Analysis"])
+app.include_router(result_router, prefix=settings.API_V1_PREFIX, tags=["Analysis"])
+app.include_router(cache_router, prefix=settings.API_V1_PREFIX)
 app.include_router(auth_router)
 
 

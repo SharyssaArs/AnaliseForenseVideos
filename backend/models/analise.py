@@ -1,5 +1,6 @@
 import uuid
 from datetime import datetime
+from typing import Optional
 
 from pydantic import BaseModel, ConfigDict
 from sqlalchemy import CHAR, Column, DateTime, ForeignKey, Integer, String
@@ -13,7 +14,7 @@ class Analise(Base):
     __tablename__ = "analises"
 
     id = Column(CHAR(36), primary_key=True, default=lambda: str(uuid.uuid4()))
-    user_id = Column(CHAR(36), ForeignKey("usuarios.id"), nullable=False)
+    user_id = Column(CHAR(36), ForeignKey("usuarios.id"), nullable=True)
     task_id = Column(String(100), nullable=False)
     video_hash = Column(String(64), unique=True, nullable=False)
     nome_arquivo = Column(String(255), nullable=False)
@@ -51,7 +52,7 @@ class AnaliseResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
     id: str
-    user_id: str
+    user_id: Optional[str] = None
     task_id: str
     video_hash: str
     nome_arquivo: str

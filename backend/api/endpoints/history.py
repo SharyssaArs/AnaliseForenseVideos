@@ -4,7 +4,7 @@ from fastapi import (
     Depends,
 )
 
-from backend.core.database import get_db
+from backend.core.database import get_db_context
 from backend.api.dependencies.auth import get_current_user
 
 from backend.crud import (
@@ -33,7 +33,7 @@ async def get_history(
 
         user_id = "TEMP_USER_ID"
 
-        with get_db() as db:
+        with get_db_context() as db:
 
             analyses = get_history_by_user(
                 db,
@@ -81,7 +81,7 @@ async def get_analysis(
 
     try:
 
-        with get_db() as db:
+        with get_db_context() as db:
 
             analise = (
                 get_analise_by_task_id(
